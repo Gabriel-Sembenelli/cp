@@ -3,7 +3,7 @@
 typedef long long   ll;
 
 #define dbg(var)    cout<<#var<<"="<<var<<" "
-#define dbgv(var)   cout<<#var<<"= ";for(auto e:var)cout<<e<<" ";cout<<endl
+#define dbgv(var)   cout<<#var<<"=";for(auto e:var)cout<<" "<<e<<;cout<<endl
 #define endl        "\n"
 
 const int    INF    = 0x3f3f3f3f;

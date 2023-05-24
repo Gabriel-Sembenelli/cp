@@ -1,15 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
+// usar .clear() e .resize()
 const int MAX = 2e5+1;
-vector<int> adj[MAX];       //  array de vectors
-vector<int> visited(MAX);   //  vector de int
+vector<vector<int>> adj;
+vector<int> visited;
+
 
 void add_edge(int x, int y){
     adj[x].push_back(y);
     adj[y].push_back(x);
 }
+
 
 void DFS(int x){
     for(int i=0; i<adj[x].size(); i++){ //  Roda para os vizinhos de 'x'
@@ -20,6 +22,7 @@ void DFS(int x){
         }
     }
 }
+
 
 void BFS(int x){
     queue<int> q;

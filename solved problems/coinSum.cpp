@@ -4,14 +4,11 @@ using namespace std;
 typedef long long   ll;
 
 #define endl        "\n"
-#define dbg(var)    cout<<#var<<"="<<var<<" "
 #define dbgv(var)   cout<<#var<<"=";for(auto e:var)cout<<" "<<e;cout<<endl
 
-const int    INF    = 0x3f3f3f3f;
-const ll     LINF   = 0x3f3f3f3f3f3f3f3f;
-const int    MOD    = 1e9+7;
-
 /*
+Problema geral: Dado um set de moedas, como posso fazer "m" usando o menor número de moedas?
+
 Dado um target "m" e uma lista de números de tamanho "n",
 o problema se trata de encontrar uma forma de somar esses números
 pra obter "m". Não precisa usar todos e pode repetir os números.

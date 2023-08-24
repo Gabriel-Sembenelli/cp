@@ -15,26 +15,31 @@ const int    MOD    = 1e9+7;
 
 */
 
-map<pair<ll,ll>, ll> memo;
-
-ll f(ll n, ll m){
-    if(memo.count({n,m})) return memo[{n,m}];
-    if(n==0 || m==0) return memo[{n,m}] = 0;
-    if(n==1 || m==1) return memo[{n,m}] = 1;
-    return memo[{n,m}] = f(n-1, m) + f(n, m-1);
+map<ll,ll> factors(ll n){
+    map<ll,ll> ret;
+    ll mx = n;
+    for(ll i=2; i<=5; i++){
+        while(n%i==0){
+            n/=i;
+            ret[i]++;
+        }
+    }
+    if(n>1) ret[n]++;
+    return ret;
 }
 
 void solve(int test_case=1){
-    memo.clear();
-    ll n, m; cin>>n>>m;
-    ll ans = f(n,m);
+    ll n; cin>>n;
+    map<ll,ll> f = factors(n);
+    ll ans = min(f[2], f[5]);
     cout << ans << endl;
 }
+
 
 int main(){
     //ios_base::sync_with_stdio(0);cin.tie(0);
     int t=1;
-    cin>>t;
+    //cin>>t;
     for(int i=1; i<=t; i++){
         solve(i);
     }

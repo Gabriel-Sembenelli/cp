@@ -16,11 +16,11 @@ struct graph {
     }
     
     // Criar aresta entre nós 'a' e 'b'
-    void edge(int a, int b, int w=1){
+    void edge(int a, int b, int p=1){
         adj[a].push_back(b);
         adj[b].push_back(a);
-        peso[a].push_back(w);
-        peso[b].push_back(w);
+        peso[a].push_back(p);
+        peso[b].push_back(p);
     }
     
     // Debugar grafo
@@ -33,16 +33,33 @@ struct graph {
         }
     }
     
-    // depth-first-search
+    // Depth-First Search
     void dfs(int v){
-        visited[v] = true;
+        visited[v] = 1;
         for(int i=0; i<adj[v].size(); i++){
             int u = adj[v][i];
-            int w = peso[v][i];
-            if(visited[u]){
-                continue;
+            int p = peso[v][i];
+            if(!visited[u]){
+                dfs(u);
             }
-            dfs(u);
+        }
+    }
+    
+    // Breadth-First Search
+    void bfs(int x){
+        queue<int> q;
+        q.push(x);
+        visited[x] = 1;
+        while(!q.empty()){
+            int v = q.front(); q.pop();
+            for(int i=0; i<adj[v].size(); i++){
+                int u = adj[v][i];
+                int p = peso[v][i];
+                if(!visited[u]){
+                    visited[u] = 1;
+                    q.push(u);
+                }
+            }
         }
     }
 };
@@ -52,6 +69,7 @@ int main(){
     g.init(5);
     g.edge(1,2,100);
     g.dfs(1);
+    g.bfs(1);
     g.debug();
 	return 0;
 }

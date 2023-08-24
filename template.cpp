@@ -1,13 +1,12 @@
 #include <bits/stdc++.h>
 
-typedef long long   ll;
-
-#define dbg(var)    cout<<#var<<"="<<var<<" "
-#define dbgv(var)   cout<<#var<<"=";for(auto e:var)cout<<" "<<e;cout<<endl
+#define dbg(V)      cout<<#V<<"="<<V<<" "
+#define dbgv(V)     cout<<#V<<"=";for(auto e:V)cout<<" "<<e;cout<<endl
 #define endl        "\n"
+#define int         long long
 
 const int    INF    = 0x3f3f3f3f;
-const ll     LINF   = 0x3f3f3f3f3f3f3f3f;
+const int    LINF   = 0x3f3f3f3f3f3f3f3f;
 const int    MOD    = 1e9+7;
 
 using namespace std;
@@ -17,13 +16,13 @@ using namespace std;
 */
 
 void solve(int test_case=1){
-    ;
+    
 }
 
-int main(){
+signed main(){
     //ios_base::sync_with_stdio(0);cin.tie(0);
     int t=1;
-    //cin>>t;
+    cin>>t;
     for(int i=1; i<=t; i++){
         solve(i);
     }

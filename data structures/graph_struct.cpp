@@ -7,13 +7,8 @@ struct graph {
     vector<bool> visited;
     vector<int> pos;
     
-    // Inicializar grafo
-    void init(int n){
-        adj.resize(++n);
-        peso.resize(n);
-        visited.resize(n);
-        pos.resize(n);
-    }
+    // Construtor
+    graph(int n): adj(++n), peso(n), visited(n), pos(n){}
     
     // Criar aresta entre nós 'a' e 'b'
     void edge(int a, int b, int p=1){
@@ -64,9 +59,9 @@ struct graph {
     }
 };
 
+
 int main(){
-    graph g;
-    g.init(5);
+    graph g(5);
     g.edge(1,2,100);
     g.dfs(1);
     g.bfs(1);

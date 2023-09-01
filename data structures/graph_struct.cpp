@@ -18,16 +18,6 @@ struct graph {
         peso[b].push_back(p);
     }
     
-    // Debugar grafo
-    void debug(){
-        for(int i=1; i<adj.size(); i++){
-            cout <<  "adj[" << i << "] = \t";
-            for(auto e: adj[i]){cout << e << " ";} cout << endl;
-            cout << "peso[" << i << "] = \t";
-            for(auto e:peso[i]){cout << e << " ";} cout << endl;
-        }
-    }
-    
     // Depth-First Search
     void dfs(int v){
         visited[v] = 1;
@@ -55,6 +45,16 @@ struct graph {
                     q.push(u);
                 }
             }
+        }
+    }
+    
+    // Debugar grafo
+    void debug(){
+        for(int i=1; i<adj.size(); i++){
+            cout <<  "adj[" << i << "] = \t";
+            for(auto e: adj[i]){cout << e << " ";} cout << endl;
+            cout << "peso[" << i << "] = \t";
+            for(auto e:peso[i]){cout << e << " ";} cout << endl;
         }
     }
 };

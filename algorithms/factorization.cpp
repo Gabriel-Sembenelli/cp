@@ -42,21 +42,9 @@ vector<ll> factors(ll n){
     return re;
 }
 
-void solve(int test_case=1){
-    int a = 360;
-    vector<ll> f;
-    f = factors(a);
-    for(auto e:f) cout << e << ' '; cout << endl;
-}
-
 
 int main(){
     crivo();
-    int t=1;
-    //cin>>t;
-    for(int i=1; i<=t; i++){
-        solve(i);
-    }
     
     return 0;
 }

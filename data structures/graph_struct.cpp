@@ -5,10 +5,9 @@ using namespace std;
 struct graph {
     vector<vector<int>> adj, peso;
     vector<bool> visited;
-    vector<int> pos;
     
     // Construtor
-    graph(int n): adj(++n), peso(n), visited(n), pos(n){}
+    graph(int n): adj(++n), peso(n), visited(n){}
     
     // Criar aresta entre nós 'a' e 'b'
     void edge(int a, int b, int p=1){

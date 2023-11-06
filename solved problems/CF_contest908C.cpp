@@ -1,4 +1,6 @@
 /*
+https://codeforces.com/contest/908/problem/C
+
 Geometry
 
 Bem basiquinho, implementação direta

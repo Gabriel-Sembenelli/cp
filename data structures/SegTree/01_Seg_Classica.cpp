@@ -1,5 +1,6 @@
 /*
 SegTree clássica de mínimo
+Point update, range query
 Operações só precisam ser associativas pra fazer SegTree
 */
 

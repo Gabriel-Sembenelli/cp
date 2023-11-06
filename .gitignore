@@ -1,2 +1,4 @@
 .cph/
 .vscode/
+temp.cpp
+tests.cpp

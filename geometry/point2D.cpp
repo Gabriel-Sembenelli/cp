@@ -75,12 +75,10 @@ double area_polygon(polygon P){
     int n = sz(P);
     double area = 0;
     for(int i=0; i<n; i++){
-        point p1 = P[i], p2 = P[(i+1)%n];
-        area += (p2.X + p1.X) * (p2.Y - p1.Y); // TA CERTO ISSO?
-        //area += p1.X * p2.Y - p1.Y * p2.X; // NÃO SERIA ISSO?
+        point a = P[i], b = P[(i+1)%n];
+        area += a.X * b.Y - a.Y * b.X;
     }
-    area /= 2.0;
-    return abs(area);
+    return abs(area / 2);
 }
 
 // does the path a,b,c makes a counter-clockwise curve?

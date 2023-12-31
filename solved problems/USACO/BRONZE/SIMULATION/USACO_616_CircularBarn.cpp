@@ -33,13 +33,12 @@ void solve2(){
         tot += r[i];
         mul_tot += i*r[i];
     }
-    
     int ans = INF, acum = 0;
     for(int i=0; i<n; i++){
         ans = min(ans, mul_tot - i*tot + n*acum);
         acum += r[i];
     }
-    
+    cout << ans << '\n';
 }
 
 signed main(){

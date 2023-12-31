@@ -3,6 +3,8 @@ using namespace std;
 
 const int INF = 0x3f3f3f3f;
 
+// naive
+// O(n^2)
 void solve(){
     int n; cin >> n;
     int r[2*n];
@@ -18,6 +20,26 @@ void solve(){
         ans = min(ans, aux); // pick minimum
     }
     cout << ans << '\n';
+}
+
+// sol by user RAHUL KATARA
+// O(n)
+void solve2(){
+    int n; cin >> n;
+    int r[n];
+    int tot = 0, mul_tot = 0;
+    for(int i=0; i<n; i++){
+        cin >> r[i];
+        tot += r[i];
+        mul_tot += i*r[i];
+    }
+    
+    int ans = INF, acum = 0;
+    for(int i=0; i<n; i++){
+        ans = min(ans, mul_tot - i*tot + n*acum);
+        acum += r[i];
+    }
+    
 }
 
 signed main(){

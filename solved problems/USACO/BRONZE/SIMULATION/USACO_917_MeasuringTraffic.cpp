@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int INF = 0x3f3f3f3f;
-
 // keep interval as large as possible
 // be careful not to go outside [0,1000] (possible WA on test 2)
 void solve(){

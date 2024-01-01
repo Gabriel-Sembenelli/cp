@@ -1,12 +1,11 @@
-// simple solution without using advanced data structures
 #include <bits/stdc++.h>
 using namespace std;
 
 const int INF = 0x3f3f3f3f;
 
+int farm[2020][2020]{};
+
 void solve(){
-    //int farm[2020][2020]{}; // segfault
-    vector<vector<int>> farm(2020, vector<int>(2020)); // no segfault
     int x = 1010, y = 1010;
     int t = 1;
     farm[x][y] = t;

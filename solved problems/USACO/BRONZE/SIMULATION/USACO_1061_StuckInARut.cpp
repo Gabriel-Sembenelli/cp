@@ -4,7 +4,7 @@ using namespace std;
 // "All x-coordinates are distinct from each-other,
 // and similarly for the y-coordinates"
 // Therefore, there are no collinear cows, which means that a cow can
-// only be stuck in a hut of another cow going in a different direction.
+// only be stuck in a rut of another cow going in a different direction.
 
 const int INF = INT_MAX;
 
@@ -32,7 +32,7 @@ void solve(){
     // for each cow, check how much the others block it's rut path
     for(int i=n-1; i>=0; i--){
         for(int j=i+1; j<n; j++){
-            if(cow[i].dir == cow[j].dir) continue; // guaranteed no hut collision
+            if(cow[i].dir == cow[j].dir) continue; // guaranteed no rut collision
             if(cow[i].diag == cow[j].diag) continue; // same diagonal doesn't collide
             
             if(cow[i].dir == 'E'){

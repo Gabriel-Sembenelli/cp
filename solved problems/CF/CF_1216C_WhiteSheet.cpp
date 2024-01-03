@@ -1,4 +1,6 @@
 /*
+https://codeforces.com/contest/1216/problem/C
+
 Worth looking at the editorial to get an interesting alternative solution
 https://codeforces.com/blog/entry/69954
 */

@@ -6,6 +6,7 @@ Directed MST
 #include <bits/stdc++.h>
 using namespace std;
 
+// My Solution -----------------------------------------------------------------
 typedef pair<int, pair<int,int>> Edge;
 #define C first
 #define A second.first
@@ -62,6 +63,31 @@ void solve(){
     
     cout << ans << '\n';
 }
+// -----------------------------------------------------------------------------
+
+// Editorial's idea ------------------------------------------------------------
+void solve2(){
+    const int INF = 0x3f3f3f3f;
+    int n; cin >> n;
+    int q[n+1]; // This vector is useless
+    int cost[n+1];
+    for(int i=1; i<=n; i++){
+        cin >> q[i];
+        cost[i] = INF;
+    }
+    int m; cin >> m;
+    for(int i=0; i<m; i++){
+        int a, b, c; cin >> a >> b >> c;
+        cost[b] = min(cost[b], c);
+    }
+    int ans = 0, noSup = 0;
+    for(int i=1; i<=n; i++){
+        if(cost[i] == INF) noSup++;
+        else ans += cost[i];
+    }
+    cout << (noSup > 1 ? -1 : ans) << '\n';
+}
+// -----------------------------------------------------------------------------
 
 signed main(){
     //freopen(".in", "r", stdin);

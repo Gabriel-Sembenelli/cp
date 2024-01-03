@@ -47,7 +47,7 @@ signed main(){
     //freopen(".out", "w", stdout);
     //ios_base::sync_with_stdio(0);cin.tie(0);
     int t; cin>>t; while(t--)
-    solve2();
+    solve();
     
     return 0;
 }

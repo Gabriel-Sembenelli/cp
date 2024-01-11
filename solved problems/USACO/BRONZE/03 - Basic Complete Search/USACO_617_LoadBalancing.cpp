@@ -45,10 +45,27 @@ Create a prefix-sum vector from 0 to 1'000'000 that accumulates x-coordinates
 Then find x-coordinate that halves the points
 Same on y
 Combine them and calculate M
+Fails on tests like:
+               .
+            .
+         .
+      .
+   .
+.
+Which the answer divides 3 groups of 2 points and isn't at (halfX, halfY):
+            |    .
+            | .
+          . |
+       .    |
+------------|---------
+  .         |
+.           |
+
 
 2) WA
 Same as (1) but check a neighborhood of the "half-coordinates"
 i.e., checkCrossAt (halfX-2, halfY-2), (halfX, halfY-2), (halfX+2, halfY-2), ...
+Still fails if the previous test is big enough
 
 3) WA
 Check cross at every 4 even corners of each point.
@@ -62,6 +79,7 @@ But this fails on tests like:
 Which the answer is right at the middle, but isn't tested
 
 4) AC
-After (3) counter-example I got the idea to combine and check every x-coordinate
-with every y-coordinate, even if they don't belong to the same point
+After these counter-examples I got the idea to combine and check every
+x-coordinate with every y-coordinate, even if they don't belong to the
+same point.
 */

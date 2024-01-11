@@ -4,9 +4,9 @@ using namespace std;
 #define int     long long
 #define ld      long double
 #define endl    "\n"
-#define sz(x)   (int)size(x)
 #define PB      push_back
 #define MP      make_pair
+#define sz(x)   (int)size(x)
 #define all(x)  begin(x), end(x)
 
 template<typename A, typename B> ostream& operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }

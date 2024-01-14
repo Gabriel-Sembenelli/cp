@@ -1,7 +1,9 @@
 /*
 https://atcoder.jp/contests/abc336/tasks/abc336_f
 
-Technique: Meet in the middle
+Techniques:
+    Recursive Complete Search
+    Meet in the middle
 
 Idea reference: (didn't solve it all by myself)
 https://youtu.be/g2-e1ntHOq4?si=BCdumbOa2niFcraq&t=210

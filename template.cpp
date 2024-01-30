@@ -36,7 +36,7 @@ signed main(){
     return 0;
 }
 
-/* stuff you should look for (adapted BenQ)
+/* stuff you should look for (adapted from BenQ)
     * uninitialized stuff
     * off-by-one errors
     * int overflow, array bounds

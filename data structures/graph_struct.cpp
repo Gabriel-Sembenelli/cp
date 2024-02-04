@@ -1,15 +1,12 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 // Tem peso nas arestas
-struct graph {
+struct Graph {
     vector<vector<int>> adj, peso;
     vector<bool> visited;
     
     // Construtor
-    graph(int n): adj(++n), peso(n), visited(n){}
+    Graph(int n): adj(++n), peso(n), visited(n){} // 1-indexado
     
-    // Criar aresta entre nós 'a' e 'b'
+    // Criar aresta entre nós 'a' e 'b' com peso 'p' (opcional)
     void edge(int a, int b, int p=1){
         adj[a].push_back(b);
         adj[b].push_back(a);
@@ -57,13 +54,3 @@ struct graph {
         }
     }
 };
-
-
-int main(){
-    graph g(5);
-    g.edge(1,2,100);
-    g.dfs(1);
-    g.bfs(1);
-    g.debug();
-	return 0;
-}

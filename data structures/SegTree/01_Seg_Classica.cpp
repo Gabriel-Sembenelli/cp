@@ -22,6 +22,7 @@ void update(int i, int l, int r, int qi, int x){
     int m = (l+r)/2;
     if(qi <= m) update(2*i, l, m, qi, x);   // qi is in left child
     else update(2*i+1, m+1, r, qi, x);      // qi is in right child
+    seg[i] = min(seg[2*i], seg[2*i+1]); // updating non-leaf node
 }
 
 signed main(){

@@ -28,6 +28,21 @@ void search(vector<ll> &v, Map &m, ll i, ll sum){
     search(v, m, i+1, sum + v[i]);
 }
 
+// too slow
+void search(vector<ll> &v, Map &m){
+    ll N = v.size();
+    ll lim = 1LL << N;
+    for(ll mask = 0; mask < lim; mask++){
+        ll sum = 0;
+        for(ll b = 1, i = 0; b < lim; b <<= 1, i++){
+            if(b & mask) sum += v[i];
+            if(sum > x) break;
+        }
+        if(sum <= x)
+            m[sum]++;
+    }
+}
+
 void solve(){
     cin >> n >> x;
     vector<ll> t(n); for(auto &e:t) cin >> e;

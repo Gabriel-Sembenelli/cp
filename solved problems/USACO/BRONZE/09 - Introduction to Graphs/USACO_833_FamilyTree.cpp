@@ -1,7 +1,7 @@
 /*
 https://usaco.guide/bronze/intro-graphs#problem-usaco-833
 
-Trees, Implementation.
+Trees, Implementation, basic LCA.
 
 This problem involves finding ancestors and some implementation.
 

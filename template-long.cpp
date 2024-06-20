@@ -57,8 +57,8 @@ signed main(){
 void setIO(string file){
     ios_base::sync_with_stdio(0); cin.tie(0);
     if(!file.empty()){
-        auto i = freopen((file + ".in").c_str(), "r", stdin);
-        auto o = freopen((file + ".out").c_str(), "w", stdout);
+        freopen((file + ".in").c_str(), "r", stdin);
+        freopen((file + ".out").c_str(), "w", stdout);
     }
 }
 

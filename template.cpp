@@ -23,7 +23,7 @@ signed main(){
 void setIO(string file){
     ios_base::sync_with_stdio(0); cin.tie(0);
     if(!file.empty()){
-        freopen((file + ".in").c_str(), "r", stdin);
-        freopen((file + ".out").c_str(), "w", stdout);
+        (void)!freopen((file + ".in").c_str(), "r", stdin);
+        (void)!freopen((file + ".out").c_str(), "w", stdout);
     }
 }

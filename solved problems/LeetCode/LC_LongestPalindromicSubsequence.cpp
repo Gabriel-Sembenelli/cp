@@ -13,7 +13,7 @@ If s[i] == s[j], then LPS(s[i..j]) = LPS(s[i+1..j-1]) + 2
 If s[i] != s[j], then one of the two doesn't participate in the palindrome
 (suppose by means of contradiction that both participate to convince yourself)
     if s[i] don't participate, then LPS(s[i..j]) = LPS(s[i+1..j])
-    se s[j] don't participate, then LPS(s[i..j]) = LPS(s[i..j-1])
+    if s[j] don't participate, then LPS(s[i..j]) = LPS(s[i..j-1])
     (also similar to the s1[i] != s2[j] case on LCS)
 
 See also:

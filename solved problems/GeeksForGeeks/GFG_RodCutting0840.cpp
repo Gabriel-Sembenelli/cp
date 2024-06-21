@@ -3,7 +3,9 @@ https://www.geeksforgeeks.org/problems/rod-cutting0840/1
 
 Basic DP
 
-Just see CLRS book for explanation
+Just see CLRS book section 15.1 for explanation of this classic problem.
+See a variation:
+https://www.codingame.com/ide/puzzle/rod-cutting-problem
 */
 class Solution{
   public:

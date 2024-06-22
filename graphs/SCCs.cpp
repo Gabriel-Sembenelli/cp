@@ -30,7 +30,7 @@ void SCCs(){
     }
     
     fill_n(visited, V+1, 0);
-    for(int v=1; v<=N; ++v) if(!visited[v])
+    for(int v=1; v<=V; ++v) if(!visited[v])
         dfs1(v);
     
     reverse(all(order));

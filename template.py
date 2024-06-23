@@ -21,4 +21,5 @@ dict = {    "nome":"Gabs",  #
             "ano":2001      #
 }
 dict["curso"] = "BCC"       # funciona igual C++
+print(dict["abacaba"])      # ERRO, key nao existe e ele nao cria. Testa 'key in dict' antes
 dict.pop("nome")            # remove item

@@ -3,6 +3,10 @@ https://usaco.guide/silver/graph-traversal#problem-usaco-992
 
 Graphs, Binary Search, Connected Components, DSU
 
+For some reason I had to look the Solution, although I knew all concepts used in
+it. I didn't note that the answer was Binary Searchable, also didn't note the
+relation between sortable and connected components.
+
 Do a B.Search on the minimum width.
 For each test, define components for all cows and nodes using only edges that
 satisfy minWidth <= edge.width.

@@ -1,5 +1,5 @@
 /*
-https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=9
+https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=41&page=show_problem&problem=1251
 
 Geometry
 */

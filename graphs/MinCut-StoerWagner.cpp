@@ -1,7 +1,12 @@
 /*
-Reference: https://en.wikipedia.org/wiki/Stoer%E2%80%93Wagner_algorithm
 Input: An undirected weighted graph (adjacency matrix representation)
 Output: Global Min-Cut in O(V^3)
+Reference:
+https://en.wikipedia.org/wiki/Stoer%E2%80%93Wagner_algorithm
+https://dl.acm.org/doi/pdf/10.1145/263867.263872
+https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=6f557b163ab5e9295bb41d3bbd974c544d336deb
+https://www.cs.tau.ac.il/~zwick/grad-algo-08/gmc.pdf
+https://github.com/kth-competitive-programming/kactl/blob/main/content/graph/GlobalMinCut.h
 */
 
 pair<int, vector<int>> mincut(vector<vector<int>> adj) {

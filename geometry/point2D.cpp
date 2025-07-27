@@ -1,99 +1,118 @@
 // PRECISO TESTAR TUDO
+// ref: https://github.com/brunomaletta/Biblioteca/blob/master/Codigo/Primitivas/geometria.cpp
 
 #define sz(x) (int)x.size()
+#define sq(x) ((x)*(x))
 
-const double EPS = 1e-9;
-const double pi = acos(-1);
+using T = int;
+using ld = double;
 
-// 2D point
-#define X first
-#define Y second
-typedef pair<int, int> point;
-
-// line "y = Ax + B", where A = (Anum / Aden), B = (Bnum, Bden)
-#define Anum first.first
-#define Aden first.second
-#define Bnum second.first
-#define Bden second.second
-typedef pair<pair<int,int>, pair<int,int>> line;
-
-// polygon
-typedef vector<point> polygon;
+const ld EPS = 1e-9;
+const ld pi = acos(-1);
 
 // compare using EPS
-bool equals(double x, double y){return abs(x-y) < EPS;}
+bool eq(ld x, ld y){return abs(x-y) <= EPS;}
 
-// dot product
-int dot(point a, point b){return a.X * b.X + a.Y * b.Y;}
+struct Pt{
+    T x, y;
+    Pt(T _x = 0, T _y = 0) : x(_x), y(_y) {}
+    Pt&  operator += (const Pt p)       { x += p.x; y += p.y; return *this; }
+    Pt&  operator -= (const Pt p)       { x -= p.x; y -= p.y; return *this; }
+    Pt   operator +  (const Pt p) const { return Pt(x + p.x, y + p.y); }
+    Pt   operator -  (const Pt p) const { return Pt(x - p.x, y - p.y); }
+    Pt   operator *  (const T  a) const { return Pt(x * a  , y * a); }
+    Pt   operator /  (const T  a) const { return Pt(x / a  , y / a); }
+    T    operator *  (const Pt p) const { return x * p.x + y * p.y; }
+    T    operator ^  (const Pt p) const { return x * p.y - y * p.x; }
+    bool operator == (const Pt p) const { return eq(x, p.x) && eq(y, p.y); }
+    bool operator != (const Pt p) const { return !(*this == p); }
+    bool operator <  (const Pt p) const {
+        if(!eq(x, p.x)) return x < p.x;
+        if(!eq(y, p.y)) return y < p.y;
+        return 0;
+    }
+    friend istream& operator >> (istream& in, Pt& p){ return in >> p.x >> p.y; }
+    friend ostream& operator << (ostream& out, Pt& p){
+        return out << '(' << p.x << ',' << p.y << ')';
+    }
+};
 
-// |a|²
-int norm(point a){return dot(a, a);}
+using Polygon = vector<Pt>;
 
-// |a|
-double length(point a){return sqrt(norm(a));}
+struct Line{
+    Pt a, b;
+    Line(Pt _a = Pt(0,0), Pt _b = Pt(0,0)) : a(_a), b(_b) {}
+    friend istream& operator >> (istream& in, Line& l){
+        return in >> l.a >> l.b;
+    }
+};
+
+ld norm(Pt v){ return sqrt(v * v); } // |v|
+
+T dist2(Pt a, Pt b){ return (a - b) * (a - b); } // squared point distance
+
+ld dist(Pt a, Pt b){ return sqrt(dist2(a, b)); } // point distance
+
+ld angle(Pt v){ // angle with x axis in [0, 2pi)
+    ld ang = atan2(v.y, v.x);
+    if(ang < 0) ang += 2 * pi;
+    return ang;
+}
 
 // angle AOB in radians
-double angle(point a, point b){
-    return acos( dot(a,b) / (length(a) * length(b)) );
-}
+ld angle_between(Pt a, Pt b){ return acos( (a * b) / (norm(a) * norm(b)) ); }
 
 // angle ACB in radians
-double angle2(point a, point b, point c){
-    a = {a.X-c.X, a.Y-c.Y};
-    b = {b.X-c.X, b.Y-c.Y};
-    return angle(a, b);
+ld angle2(Pt a, Pt b, Pt c){ return angle_between(a - c, b - c); }
+
+// signed area of the paralelogram defined by 'a' and 'b'
+int sarea2(Pt a, Pt b){ return a ^ b; }
+
+// does the path a,b,c makes a counter-clockwise curve?
+int ccw(Pt a, Pt b, Pt c){
+    T det = (c - b) ^ (b - a);
+    if(eq(det, 0)) return 0; // collinear
+    if(det > 0) return 1;    // ccw
+    return -1;               // cw
 }
 
-// area of the paralelogram defined by 'a' and 'b'
-int area2(point a, point b){return a.X * b.Y - a.Y * b.X;}
-
-// line that passes through a and b             PRECISO TESTAR ISSO
-line make_line(point a, point b){
-    int anum = b.Y - a.Y;
-    int aden = b.X - a.X;
-    int bnum = a.X * b.Y - a.Y * b.X;
-    int bden = b.X - a.X;
-    return {{anum, aden}, {bnum, bden}};
+Pt rotate(Pt v, ld theta){ // rotate v by theta radians
+    return Pt(  v.x * cos(theta) - v.y * sin(theta),
+                v.x * sin(theta) + v.y * cos(theta));
 }
+
+Pt rotate90(Pt v) { return Pt(-v.y, v.x); } // rotate v by 90 degrees
 
 // angle opposite to side 'a' in a triangle of sides a,b,c
-double angle_a(int a, int b, int c){
-    return acos( double(a*a - b*b - c*c) / double(-2*b*c) );
+ld angle_a(int a, int b, int c){
+    return acos( ld(a*a - b*b - c*c) / ld(-2*b*c) );
 }
 
 // distance between point 'p' and line defined by 'a' and 'b'
-double dist_pl(point p, point a, point b){
-    double num =
-    abs( (b.Y - a.Y)*p.X - (b.X - a.X)*p.Y + b.X*a.Y - b.Y*a.X );
-    double den =
-    sqrt( (b.Y - a.Y)*(b.Y - a.Y) + (b.X - a.X)*(b.X - a.X) );
+ld dist_pl(Pt p, Pt a, Pt b){
+    ld num =
+    abs( (b.y - a.y)*p.x - (b.x - a.x)*p.y + b.x*a.y - b.y*a.x );
+    ld den =
+    sqrt( (b.y - a.y)*(b.y - a.y) + (b.x - a.x)*(b.x - a.x) );
     return num / den;
 }
 
-// uses Gauss's Formula to compute area of generic polygon
-double area_polygon(polygon P){
+// Shoelace Formula to compute the area of a generic polygon
+ld area_polygon(Polygon P){
     int n = sz(P);
-    double area = 0;
-    for(int i=0; i<n; i++){
-        point a = P[i], b = P[(i+1)%n];
-        area += a.X * b.Y - a.Y * b.X;
+    ld area = 0;
+    for(int i = 0; i < n; ++i){
+        Pt a = P[i], b = P[(i + 1) % n];
+        area += (a ^ b);
     }
     return abs(area / 2);
 }
 
-// does the path a,b,c makes a counter-clockwise curve?
-int ccw(point a, point b, point c){
-    int det = (b.X - a.X) * (c.Y - a.Y) - (b.Y - a.Y) * (c.X - a.X);
-    if(det > 0) return 1;   // ccw
-    if(det < 0) return -1;  // cw
-    return 0;               // collinear
-}
-
-// is point 'a' inside of convex polygon 'P'? O(|P|)
-bool is_inside(point a, polygon P){
+// is point 'a' inside convex polygon 'P' (given in ccw order)? O(|P|)
+bool is_inside(Pt a, Polygon P){
     int n = sz(P);
-    for(int i=0; i<n; i++)
-        if(ccw(P[i], P[(i+1)%n], a) == -1)
+    for(int i = 0; i < n; ++i)
+        if(ccw(P[i], P[(i + 1) % n], a) == -1)
             return false;
     return true;
 }

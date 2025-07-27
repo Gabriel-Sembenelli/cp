@@ -1,7 +1,7 @@
 // PRECISO TESTAR TUDO
 // ref: https://github.com/brunomaletta/Biblioteca/blob/master/Codigo/Primitivas/geometria.cpp
 
-#define sz(x) (int)x.size()
+#define sz(x) (int)(x).size()
 #define sq(x) ((x)*(x))
 
 using T = int;
@@ -70,10 +70,20 @@ int sarea2(Pt a, Pt b){ return a ^ b; }
 
 // does the path a,b,c makes a counter-clockwise curve?
 int ccw(Pt a, Pt b, Pt c){
-    T det = (c - b) ^ (b - a);
+    T det = (b - a) ^ (c - a);
     if(eq(det, 0)) return 0; // collinear
     if(det > 0) return 1;    // ccw
     return -1;               // cw
+}
+
+bool inseg(Pt p, Pt a, Pt b){ // The point p is in segment ab
+    return ((a - p)^(b - p)) == 0 && ((a - p)*(b - p)) <= 0;
+}
+
+bool intersect(Pt a, Pt b, Pt c, Pt d){ // The segments ab and cd intersect
+    if(inseg(a, c, d) || inseg(b, c, d) || inseg(c, a, b) || inseg(d, a, b))
+        return true;
+    return ccw(a, b, c) != ccw(a, b, d) && ccw(c, d, a) != ccw(c, d, b);
 }
 
 Pt rotate(Pt v, ld theta){ // rotate v by theta radians
@@ -98,18 +108,16 @@ ld dist_pl(Pt p, Pt a, Pt b){
 }
 
 // Shoelace Formula to compute the area of a generic polygon
-ld area_polygon(Polygon P){
+ld area_polygon(Polygon& P){
     int n = sz(P);
-    ld area = 0;
-    for(int i = 0; i < n; ++i){
-        Pt a = P[i], b = P[(i + 1) % n];
-        area += (a ^ b);
-    }
-    return abs(area / 2);
+    ld re = 0;
+    for(int i = 0; i < n; ++i)
+        re += (P[i] ^ P[(i + 1) % n]);
+    return abs(re / 2);
 }
 
 // is point 'a' inside convex polygon 'P' (given in ccw order)? O(|P|)
-bool is_inside(Pt a, Polygon P){
+bool is_inside(Pt a, Polygon& P){
     int n = sz(P);
     for(int i = 0; i < n; ++i)
         if(ccw(P[i], P[(i + 1) % n], a) == -1)
